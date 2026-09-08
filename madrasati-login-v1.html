@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>مدرستي — تسجيل الدخول</title>
+<style>
+  :root{--navy:#0B1F3A;--navy2:#102A43;--blue:#2563EB;--blue2:#1D4ED8;--bg:#F4F7FB;--card:#fff;--muted:#6B7A90;--line:#DCE5F0;--soft:#EEF4FF;--danger:#DC2626;--shadow:0 24px 60px rgba(19,42,76,.14)}
+  *{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:"Tajawal","Cairo","Noto Sans Arabic",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 85% 10%,rgba(37,99,235,.10),transparent 28%),radial-gradient(circle at 15% 85%,rgba(11,31,58,.06),transparent 32%),var(--bg);color:var(--navy)}
+  body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}.phone{width:min(100%,430px);background:var(--card);border-radius:32px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(11,31,58,.06)}
+  .hero{position:relative;padding:26px 24px 18px;background:linear-gradient(145deg,#0B1F3A 0%,#123765 52%,#2563EB 100%);color:white;min-height:220px;overflow:hidden}.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07)}.hero::before{width:190px;height:190px;left:-70px;top:-85px}.hero::after{width:140px;height:140px;right:-45px;bottom:-70px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}.lang{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.10);color:#fff;border-radius:999px;padding:8px 11px;font-size:12px;cursor:pointer}.secure{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.78)}
+  .brand{position:relative;z-index:2;text-align:center;margin-top:22px}.logo{width:76px;height:76px;margin:0 auto 12px;border-radius:22px;background:#fff;display:grid;place-items:center;box-shadow:0 14px 34px rgba(0,0,0,.18)}.logo svg{width:48px;height:48px}.brand h1{margin:0;font-size:30px;font-weight:800}.brand p{margin:7px 0 0;color:rgba(255,255,255,.80);font-size:14px}
+  .body{padding:24px}.welcome{margin-bottom:20px}.welcome h2{margin:0 0 6px;font-size:22px}.welcome p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}.field{margin-bottom:14px}label{display:block;font-size:13px;font-weight:700;margin-bottom:8px;color:var(--navy2)}.input-wrap{position:relative}.input-wrap>svg{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:#7C8DA5}
+  input{width:100%;height:52px;border:1px solid var(--line);background:#FBFCFE;color:var(--navy);border-radius:16px;padding:0 44px 0 46px;font-size:15px;outline:none;transition:.2s}input:focus{border-color:#8CB3FF;box-shadow:0 0 0 4px rgba(37,99,235,.10);background:#fff}.eye{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;background:transparent;border-radius:10px;cursor:pointer;display:grid;place-items:center}.eye:hover{background:var(--soft)}.eye svg{width:20px;height:20px}.row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:2px 0 18px}.remember{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}.remember input{width:18px;height:18px;accent-color:var(--blue);padding:0}a{color:var(--blue);text-decoration:none;font-weight:700;font-size:13px}
+  .btn{width:100%;height:54px;border:0;border-radius:16px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 14px 26px rgba(37,99,235,.24)}.divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:#9AA8BA;font-size:12px}.divider::before,.divider::after{content:"";height:1px;background:var(--line);flex:1}.secondary{width:100%;height:50px;border:1px solid var(--line);background:#fff;border-radius:16px;color:var(--navy);font-size:14px;font-weight:800;cursor:pointer}.note{margin-top:18px;padding:12px 14px;border-radius:14px;background:#F8FAFD;color:#8190A4;font-size:11px;line-height:1.7;border:1px solid #EEF2F7;text-align:center}.error{font-size:12px;color:var(--danger);margin-top:7px;display:none}.success{display:none;margin-bottom:14px;padding:11px 13px;border-radius:14px;background:#F0FDF4;color:#166534;font-size:13px;border:1px solid #BBF7D0}.footer{padding:0 24px 22px;text-align:center;color:#98A6B8;font-size:11px}@media(max-width:380px){.body{padding:20px}.hero{padding-inline:20px}.brand h1{font-size:27px}}
+</style>
+</head>
+<body>
+<main class="phone">
+<section class="hero">
+<div class="topbar"><button class="lang" id="langBtn">Français</button><div class="secure"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>دخول آمن</div></div>
+<div class="brand"><div class="logo"><svg viewBox="0 0 64 64" fill="none"><path d="M10 22c8-4 16-5 22 1v25c-6-6-14-5-22-1V22Z" stroke="#2563EB" stroke-width="3"/><path d="M54 22c-8-4-16-5-22 1v25c6-6 14-5 22-1V22Z" stroke="#0B1F3A" stroke-width="3"/><path d="m18 16 14-7 14 7-14 7-14-7Z" fill="#2563EB"/><path d="M45 16v9" stroke="#0B1F3A" stroke-width="3" stroke-linecap="round"/></svg></div><h1>مدرستي</h1><p>إدارة مدرسية ذكية، سريعة واحترافية</p></div>
+</section>
+<section class="body">
+<div class="welcome"><h2>مرحبًا بعودتك</h2><p>سجّل الدخول للوصول إلى مدرستك وإدارة النتائج بسهولة.</p></div>
+<div class="success" id="successBox">تم التحقق من البيانات بنجاح — هذه نسخة تجريبية لواجهة الدخول.</div>
+<div class="field"><label for="user">رقم الهاتف أو البريد الإلكتروني</label><div class="input-wrap"><input id="user" type="text" autocomplete="username" placeholder="مثال: 22 00 00 00"/><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></div><div class="error" id="userError">أدخل رقم الهاتف أو البريد الإلكتروني.</div></div>
+<div class="field"><label for="password">كلمة المرور</label><div class="input-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور"/><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><button class="eye" id="eyeBtn" aria-label="إظهار أو إخفاء كلمة المرور"><svg viewBox="0 0 24 24" fill="none" stroke="#7C8DA5" stroke-width="1.8"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div><div class="error" id="passError">أدخل كلمة مرور من 4 أحرف على الأقل.</div></div>
+<div class="row"><label class="remember"><input id="remember" type="checkbox"/> تذكرني</label><a href="#" id="forgot">نسيت كلمة المرور؟</a></div>
+<button class="btn" id="loginBtn">تسجيل الدخول</button><div class="divider">أو</div><button class="secondary" id="createBtn">إنشاء حساب / مدرسة جديدة</button><div class="note">نسخة واجهة فقط للتجربة. لا يوجد خادم أو حسابات حقيقية في هذه المرحلة.</div>
+</section><div class="footer">Ma Madrassa • Prototype Login v1</div>
+</main>
+<script>
+const user=document.getElementById('user'),password=document.getElementById('password'),userError=document.getElementById('userError'),passError=document.getElementById('passError'),successBox=document.getElementById('successBox');
+document.getElementById('eyeBtn').addEventListener('click',()=>{password.type=password.type==='password'?'text':'password'});
+document.getElementById('loginBtn').addEventListener('click',()=>{const u=user.value.trim(),p=password.value.trim();userError.style.display=u?'none':'block';passError.style.display=p.length>=4?'none':'block';successBox.style.display=(u&&p.length>=4)?'block':'none';if(u&&p.length>=4){localStorage.setItem('madrasati_login_demo_user',u);document.getElementById('remember').checked?localStorage.setItem('madrasati_remember','1'):localStorage.removeItem('madrasati_remember')}});
+document.getElementById('langBtn').addEventListener('click',()=>alert('النسخة الفرنسية ستكون تطويرًا مستقلاً بعد اعتماد تصميم شاشة الدخول.'));
+document.getElementById('forgot').addEventListener('click',e=>{e.preventDefault();alert('استرجاع كلمة المرور سيكون مهمة مستقلة عند إضافة الحسابات الحقيقية.')});
+document.getElementById('createBtn').addEventListener('click',()=>alert('إنشاء الحساب/المدرسة سيكون مهمة مستقلة لاحقًا.'));
+const saved=localStorage.getItem('madrasati_login_demo_user');if(saved&&localStorage.getItem('madrasati_remember')==='1'){user.value=saved;document.getElementById('remember').checked=true}
+</script>
+</body>
+</html>
