@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مدرستي</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;font-family:Arial,sans-serif;color:#172033}
+.app{max-width:600px;margin:auto;min-height:100vh;padding:20px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.logo{font-size:27px;font-weight:800}.school{font-size:13px;color:#7a8190;margin-top:5px}
+.hero{background:#172033;color:white;border-radius:25px;padding:25px;margin-bottom:22px}.hero h2{margin:0 0 8px;font-size:23px}.hero p{margin:0;color:#cbd1dc}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:white;border:1px solid #e9ebf0;border-radius:20px;padding:20px;cursor:pointer}
+.icon{font-size:28px;margin-bottom:12px}.card b{display:block;font-size:17px;margin-bottom:6px}.card small{color:#858b98}
+.page{display:none}.page.active{display:block}.back{border:0;background:white;padding:10px 15px;border-radius:12px;font-weight:bold;margin-bottom:15px}
+.item{background:white;border:1px solid #e7e9ef;padding:18px;border-radius:17px;margin-bottom:11px;cursor:pointer}.item b{font-size:17px}.item small{display:block;color:#8a909c;margin-top:5px}
+.student{display:flex;align-items:center;gap:10px;background:white;border:1px solid #e7e9ef;padding:12px;border-radius:15px;margin-bottom:10px}.student span{flex:1;font-weight:bold}
+.student input{width:75px;padding:11px;border:1px solid #d8dce5;border-radius:11px;text-align:center;font-size:16px}.save{width:100%;border:0;background:#172033;color:white;padding:16px;border-radius:15px;font-size:16px;font-weight:bold;margin-top:15px}
+.notice{text-align:center;padding:12px;margin-top:10px;border-radius:12px;background:#eaf8ef;color:#17733b;display:none}
+</style>
+</head>
+<body>
+<div class="app">
+<div id="home" class="page active">
+<header><div><div class="logo">مدرستي</div><div class="school">إدارة المدرسة والنتائج</div></div><div>🔔</div></header>
+<div class="hero"><h2>مرحباً 👋</h2><p>إدارة نتائج الطلاب بسرعة وسهولة.</p></div>
+<div class="grid">
+<div class="card" onclick="show('classes')"><div class="icon">📝</div><b>النتائج</b><small>إدخال وتعديل الدرجات</small></div>
+<div class="card"><div class="icon">👨‍🎓</div><b>الطلاب</b><small>إدارة الطلاب</small></div>
+<div class="card"><div class="icon">🏫</div><b>الفصول</b><small>إدارة الفصول</small></div>
+<div class="card"><div class="icon">📚</div><b>الاختبارات</b><small>الامتحانات والاختبارات</small></div>
+</div></div>
+
+<div id="classes" class="page"><button class="back" onclick="show('home')">→ رجوع</button><h2>اختر الفصل</h2>
+<div class="item" onclick="chooseClass('السادسة A')"><b>السادسة A</b><small>المرحلة الابتدائية</small></div>
+<div class="item" onclick="chooseClass('السادسة B')"><b>السادسة B</b><small>المرحلة الابتدائية</small></div>
+<div class="item" onclick="chooseClass('الثالثة A')"><b>الثالثة A</b><small>المرحلة الإعدادية</small></div></div>
+
+<div id="subjects" class="page"><button class="back" onclick="show('classes')">→ رجوع</button><h2 id="classTitle"></h2><p>اختر المادة</p>
+<div class="item" onclick="chooseSubject('الرياضيات')"><b>الرياضيات</b></div>
+<div class="item" onclick="chooseSubject('اللغة العربية')"><b>اللغة العربية</b></div>
+<div class="item" onclick="chooseSubject('الفرنسية')"><b>الفرنسية</b></div>
+<div class="item" onclick="chooseSubject('العلوم')"><b>العلوم</b></div></div>
+
+<div id="scores" class="page"><button class="back" onclick="show('subjects')">→ رجوع</button><h2 id="subjectTitle"></h2><p id="scoreInfo"></p>
+<div id="students"></div><button class="save" onclick="saveScores()">حفظ النتائج</button><div id="notice" class="notice">✓ تم حفظ النتائج بنجاح</div></div>
+</div>
+
+<script>
+let selectedClass="",selectedSubject="";
+const names=["أحمد محمد","مريم أحمد","محمد الأمين","فاطمة علي","سيدي محمد","خديجة سالم","عبد الله أحمد","آمنة محمد"];
+function show(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0)}
+function chooseClass(name){selectedClass=name;document.getElementById("classTitle").innerText=name;show("subjects")}
+function chooseSubject(name){
+ selectedSubject=name;document.getElementById("subjectTitle").innerText=name;document.getElementById("scoreInfo").innerText=selectedClass+" • الدرجة من 20";
+ const box=document.getElementById("students");box.innerHTML="";
+ names.forEach((student,i)=>{const key=selectedClass+"-"+selectedSubject+"-"+i;const value=localStorage.getItem(key)||"";
+ box.innerHTML+=`<div class="student"><span>${i+1}. ${student}</span><input id="s${i}" type="number" min="0" max="20" value="${value}" placeholder="0-20"></div>`});
+ show("scores")
+}
+function saveScores(){
+ names.forEach((student,i)=>{const input=document.getElementById("s"+i);if(input)localStorage.setItem(selectedClass+"-"+selectedSubject+"-"+i,input.value)});
+ const n=document.getElementById("notice");n.style.display="block";setTimeout(()=>n.style.display="none",2500)
+}
+</script>
+</body>
+</html>
