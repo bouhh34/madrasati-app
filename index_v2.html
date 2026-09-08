@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0f5fe7" />
+<title>مدرستي</title>
+<style>
+:root{--blue:#0f5fe7;--blue2:#1b78ff;--bg:#f5f7fb;--card:#fff;--text:#142033;--muted:#7d8797;--line:#e8ecf3;--red:#d92d20;--green:#12a150}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,"Noto Sans Arabic",sans-serif;color:var(--text)}
+button,input,select{font:inherit}.app{max-width:680px;margin:auto;min-height:100vh;padding:18px 16px 90px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:52px;height:52px;border-radius:15px;background:#e9f2ff;display:grid;place-items:center;overflow:hidden;font-size:28px}
+.logo img{width:100%;height:100%;object-fit:cover}.brand h1{font-size:24px;margin:0}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.iconbtn{border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px 12px}
+.hero{background:linear-gradient(135deg,#0e4db9,#0f69ed);color:#fff;border-radius:24px;padding:22px;margin:14px 0 18px;box-shadow:0 10px 30px rgba(15,95,231,.18)}
+.hero small{opacity:.82}.hero h2{margin:6px 0 8px;font-size:22px}.hero p{margin:0;opacity:.88}
+.noticebar{display:none;background:#fff7e6;border:1px solid #ffd48a;border-radius:16px;padding:13px;margin-bottom:14px}.noticebar b{display:block;margin-bottom:4px}.noticebar span{font-size:13px;color:#7b5a1b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:17px;min-height:122px;box-shadow:0 5px 16px rgba(14,32,64,.04)}
+.tile .i{font-size:28px;margin-bottom:12px}.tile b{display:block;font-size:17px}.tile small{display:block;color:var(--muted);margin-top:5px;line-height:1.5}
+.section{display:none}.section.active{display:block}.head{display:flex;align-items:center;gap:10px;margin-bottom:16px}.head h2{margin:0;flex:1}
+.back{border:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px}.add{border:0;background:var(--blue);color:#fff;border-radius:12px;padding:10px 13px}
+.list{display:flex;flex-direction:column;gap:10px}.row{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;display:flex;align-items:center;gap:12px}
+.row .grow{flex:1}.row b{display:block}.row small{color:var(--muted);display:block;margin-top:4px}.row .emoji{width:42px;height:42px;border-radius:12px;background:#edf4ff;display:grid;place-items:center;font-size:21px}
+.row .actions{display:flex;gap:6px}.mini{border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px 9px}.danger{color:var(--red)}
+.search{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;margin-bottom:12px}
+.form{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px}.field{margin-bottom:13px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid #dce2eb;border-radius:12px;padding:12px;background:#fff}
+.primary{width:100%;border:0;background:var(--blue);color:#fff;padding:14px;border-radius:14px;font-weight:700}.secondary{width:100%;border:1px solid var(--line);background:#fff;padding:13px;border-radius:14px;margin-top:8px}
+.scoretable{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}.srow{display:grid;grid-template-columns:1fr 88px;gap:10px;align-items:center;padding:11px 13px;border-bottom:1px solid var(--line)}.srow:last-child{border-bottom:0}
+.srow input{width:100%;border:1px solid #dce2eb;border-radius:10px;padding:10px;text-align:center}
+.tag{display:inline-block;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:700}.tag.official{background:#e8f1ff;color:#0d5bd6}.tag.urgent{background:#ffe9e6;color:#b42318}
+.empty{text-align:center;color:var(--muted);padding:28px 12px;background:#fff;border:1px dashed #d8dee8;border-radius:16px}
+.statbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}.stat b{font-size:18px}.stat small{display:block;color:var(--muted);margin-top:4px}
+.footerNav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);border-top:1px solid var(--line);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:9}
+.footerNav .inner{max-width:680px;width:100%;display:grid;grid-template-columns:repeat(4,1fr)}.nav{border:0;background:transparent;padding:10px 4px;color:#6b7483;font-size:12px}.nav strong{display:block;font-size:20px;margin-bottom:3px}.nav.active{color:var(--blue)}
+.previewLogo{width:78px;height:78px;border-radius:18px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;background:#f8fbff;margin-bottom:10px}.previewLogo img{width:100%;height:100%;object-fit:cover}
+.toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:#142033;color:#fff;padding:11px 16px;border-radius:12px;display:none;z-index:20;white-space:nowrap}
+@media(max-width:420px){.app{padding-left:12px;padding-right:12px}.tile{min-height:116px;padding:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<section id="home" class="section active">
+  <div class="top">
+    <div class="brand">
+      <div class="logo" id="homeLogo">🏫</div>
+      <div><h1 id="homeSchool">مدرستي</h1><p id="homeSub">إدارة المدرسة والنتائج</p></div>
+    </div>
+    <button class="iconbtn" onclick="openSection('notifications')">🔔</button>
+  </div>
+
+  <div id="pinnedNotice" class="noticebar"></div>
+
+  <div class="hero">
+    <small>لوحة الإدارة</small>
+    <h2>مرحبًا 👋</h2>
+    <p>تحكم في المدرسة، الطلاب، النتائج والإشعارات من مكان واحد.</p>
+  </div>
+
+  <div class="grid">
+    <div class="tile" onclick="openSection('results')"><div class="i">📊</div><b>النتائج</b><small>إدخال وتعديل درجات الطلاب</small></div>
+    <div class="tile" onclick="openSection('students')"><div class="i">👨‍🎓</div><b>الطلاب</b><small>إضافة وتعديل وحذف الطلاب</small></div>
+    <div class="tile" onclick="openSection('classes')"><div class="i">🏫</div><b>الفصول</b><small>إدارة الفصول والمستويات</small></div>
+    <div class="tile" onclick="openSection('exams')"><div class="i">📝</div><b>الاختبارات</b><small>إدارة الاختبارات والامتحانات</small></div>
+    <div class="tile" onclick="openSection('notifications')"><div class="i">📢</div><b>الإشعارات الرسمية</b><small>نشر إعلان رسمي أو عاجل</small></div>
+    <div class="tile" onclick="openSection('settings')"><div class="i">⚙️</div><b>الإعدادات</b><small>الشعار واسم المدرسة والبيانات</small></div>
+  </div>
+
+  <div class="statbar">
+    <div class="stat"><b id="stStudents">0</b><small>طالب</small></div>
+    <div class="stat"><b id="stClasses">0</b><small>فصل</small></div>
+    <div class="stat"><b id="stSubjects">0</b><small>مادة</small></div>
+  </div>
+</section>
+
+<section id="classes" class="section">
+  <div class="head"><button class="back" onclick="openSection('home')">→</button><h2>الفصول</h2><button class="add" onclick="showClassForm()">+ إضافة</button></div>
+  <div id="classFormWrap"></div>
+  <div id="classList" class="list"></div>
+</section>
+
+<section id="students" class="section">
+  <div class="head"><button class="back" onclick="openSection('home')">→</button><h2>الطلاب</h2><button class="add" onclick="showStudentForm()">+ إضافة</button></div>
+  <input class="search" id="studentSearch" placeholder="ابحث عن طالب..." oninput="renderStudents()" />
+  <div id="studentFormWrap"></div>
+  <div id="studentList" class="list"></div>
+</section>
+
+<section id="results" class="section">
+  <div class="head"><button class="back" onclick="openSection('home')">→</button><h2>النتائج</h2></div>
+  <div class="form">
+    <div class="field"><label>الفصل</label><select id="resultClass" onchange="syncResultSubjects()"></select></div>
+    <div class="field"><label>المادة</label><select id="resultSubject"></select></div>
+    <div class="field"><label>الدرجة القصوى</label><input id="maxScore" type="number" value="20" min="1"></div>
+    <button class="primary" onclick="openScores()">فتح سجل الدرجات</button>
+  </div>
+  <div id="scoreArea" style="margin-top:14px"></div>
+</section>
+
+<section id="notifications" class="section">
+  <div class="head"><button class="back" onclick="openSection('home')">→</button><h2>الإشعارات الرسمية</h2><button class="add" onclick="showNoticeForm()">+ جديد</button></div>
+  <div id="noticeFormWrap"></div>
+  <div id="noticeList" class="list"></div>
+</section>
+
+<section id="exams" class="section">
+  <div class="head"><button class="back" onclick="openSection('home')">→</button><h2>الاختبارات</h2><button class="add" onclick="showExamForm()">+ إضافة</button></div>
+  <div id="examFormWrap"></div>
+  <div id="examList" class="list"></div>
+</section>
+
+<section id="settings" class="section">
+  <div class="head"><button class="back" onclick="openSection('home')">→</button><h2>الإعدادات</h2></div>
+  <div class="form">
+    <div class="previewLogo" id="logoPreview">🏫</div>
+    <div class="field"><label>شعار المدرسة</label><input id="logoInput" type="file" accept="image/*" onchange="handleLogo(event)"></div>
+    <div class="field"><label>اسم المدرسة</label><input id="schoolName"></div>
+    <div class="field"><label>السنة الدراسية</label><input id="schoolYear" placeholder="2026-2027"></div>
+    <div class="field"><label>اسم المدير</label><input id="directorName"></div>
+    <div class="field"><label>الجهة / الولاية</label><input id="regionName"></div>
+    <button class="primary" onclick="saveSettings()">حفظ الإعدادات</button>
+    <button class="secondary danger" onclick="resetAll()">إعادة ضبط كل بيانات التطبيق</button>
+  </div>
+</section>
+
+</div>
+
+<div class="footerNav">
+  <div class="inner">
+    <button class="nav active" data-target="home" onclick="openSection('home')"><strong>🏠</strong>الرئيسية</button>
+    <button class="nav" data-target="results" onclick="openSection('results')"><strong>📊</strong>النتائج</button>
+    <button class="nav" data-target="notifications" onclick="openSection('notifications')"><strong>📢</strong>الإشعارات</button>
+    <button class="nav" data-target="settings" onclick="openSection('settings')"><strong>⚙️</strong>الإعدادات</button>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script>
+const K="madrasati_v2";
+let db=JSON.parse(localStorage.getItem(K)||"null")||{
+ settings:{school:"مدرستي",year:"2026-2027",director:"",region:"",logo:""},
+ classes:[
+  {id:1,name:"الأولى ابتدائي",subjects:["اللغة العربية","الرياضيات","الفرنسية","التربية الإسلامية","العلوم"]},
+  {id:2,name:"الثانية ابتدائي",subjects:["اللغة العربية","الرياضيات","الفرنسية","التربية الإسلامية","العلوم"]}
+ ],
+ students:[
+  {id:1,name:"محمد أحمد",classId:1},{id:2,name:"فاطمة محمد",classId:1},
+  {id:3,name:"علي المختار",classId:1},{id:4,name:"مريم السالك",classId:2}
+ ],
+ exams:[],
+ notices:[],
+ scores:{}
+};
+
+function save(){localStorage.setItem(K,JSON.stringify(db));refreshStats()}
+function uid(){return Date.now()+Math.floor(Math.random()*999)}
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",1800)}
+function openSection(id){
+ document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.target===id));
+ if(id==="classes")renderClasses();
+ if(id==="students")renderStudents();
+ if(id==="results")prepareResults();
+ if(id==="notifications")renderNotices();
+ if(id==="exams")renderExams();
+ if(id==="settings")loadSettings();
+ window.scrollTo(0,0)
+}
+function clsName(id){return (db.classes.find(c=>c.id==id)||{}).name||"بدون فصل"}
+function refreshStats(){
+ document.getElementById("stStudents").textContent=db.students.length;
+ document.getElementById("stClasses").textContent=db.classes.length;
+ document.getElementById("stSubjects").textContent=[...new Set(db.classes.flatMap(c=>c.subjects||[]))].length;
+ document.getElementById("homeSchool").textContent=db.settings.school||"مدرستي";
+ document.getElementById("homeSub").textContent=(db.settings.region?db.settings.region+" • ":"")+"السنة "+(db.settings.year||"");
+ const logo=document.getElementById("homeLogo");logo.innerHTML=db.settings.logo?`<img src="${db.settings.logo}">`:"🏫";
+ renderPinned()
+}
+function renderPinned(){
+ const p=db.notices.filter(n=>n.pinned).sort((a,b)=>b.id-a.id)[0];
+ const e=document.getElementById("pinnedNotice");
+ if(!p){e.style.display="none";return}
+ e.style.display="block";e.innerHTML=`<b>📌 ${p.title}</b><span>${p.body}</span>`
+}
+
+function renderClasses(){
+ const box=document.getElementById("classList");
+ box.innerHTML=db.classes.length?"":"<div class='empty'>لا توجد فصول بعد.</div>";
+ db.classes.forEach(c=>{
+  const count=db.students.filter(s=>s.classId==c.id).length;
+  const d=document.createElement("div");d.className="row";
+  d.innerHTML=`<div class="emoji">🏫</div><div class="grow"><b>${c.name}</b><small>${count} طالب • ${(c.subjects||[]).length} مادة</small></div>
+  <div class="actions"><button class="mini" onclick="editClass(${c.id})">✏️</button><button class="mini danger" onclick="deleteClass(${c.id})">🗑️</button></div>`;
+  box.appendChild(d)
+ })
+}
+function showClassForm(c=null){
+ document.getElementById("classFormWrap").innerHTML=`<div class="form" style="margin-bottom:12px">
+ <div class="field"><label>اسم الفصل</label><input id="cfName" value="${c?c.name:""}"></div>
+ <div class="field"><label>المواد — افصل بينها بفاصلة</label><input id="cfSubjects" value="${c?(c.subjects||[]).join("، "):"اللغة العربية، الرياضيات، الفرنسية"}"></div>
+ <button class="primary" onclick="saveClass(${c?c.id:"null"})">حفظ</button><button class="secondary" onclick="document.getElementById('classFormWrap').innerHTML=''">إلغاء</button></div>`
+}
+function saveClass(id){
+ const name=document.getElementById("cfName").value.trim();if(!name)return toast("اكتب اسم الفصل");
+ const subjects=document.getElementById("cfSubjects").value.split(/[،,]/).map(x=>x.trim()).filter(Boolean);
+ if(id){let c=db.classes.find(x=>x.id==id);c.name=name;c.subjects=subjects}else db.classes.push({id:uid(),name,subjects});
+ save();document.getElementById("classFormWrap").innerHTML="";renderClasses();toast("تم حفظ الفصل")
+}
+function editClass(id){showClassForm(db.classes.find(c=>c.id==id))}
+function deleteClass(id){if(!confirm("حذف الفصل؟"))return;db.classes=db.classes.filter(c=>c.id!=id);db.students=db.students.filter(s=>s.classId!=id);save();renderClasses()}
+
+function classOptions(selected=""){return db.classes.map(c=>`<option value="${c.id}" ${c.id==selected?"selected":""}>${c.name}</option>`).join("")}
+function renderStudents(){
+ const q=(document.getElementById("studentSearch")?.value||"").trim();
+ const arr=db.students.filter(s=>!q||s.name.includes(q));
+ const box=document.getElementById("studentList");box.innerHTML=arr.length?"":"<div class='empty'>لا توجد نتائج.</div>";
+ arr.forEach(s=>{const d=document.createElement("div");d.className="row";d.innerHTML=`<div class="emoji">👤</div><div class="grow"><b>${s.name}</b><small>${clsName(s.classId)}</small></div>
+ <div class="actions"><button class="mini" onclick="editStudent(${s.id})">✏️</button><button class="mini danger" onclick="deleteStudent(${s.id})">🗑️</button></div>`;box.appendChild(d)})
+}
+function showStudentForm(s=null){
+ document.getElementById("studentFormWrap").innerHTML=`<div class="form" style="margin-bottom:12px"><div class="field"><label>اسم الطالب</label><input id="sfName" value="${s?s.name:""}"></div>
+ <div class="field"><label>الفصل</label><select id="sfClass">${classOptions(s?s.classId:"")}</select></div><button class="primary" onclick="saveStudent(${s?s.id:"null"})">حفظ</button><button class="secondary" onclick="document.getElementById('studentFormWrap').innerHTML=''">إلغاء</button></div>`
+}
+function saveStudent(id){const name=document.getElementById("sfName").value.trim(),classId=+document.getElementById("sfClass").value;if(!name)return toast("اكتب اسم الطالب");
+ if(id){let s=db.students.find(x=>x.id==id);s.name=name;s.classId=classId}else db.students.push({id:uid(),name,classId});save();document.getElementById("studentFormWrap").innerHTML="";renderStudents();toast("تم حفظ الطالب")}
+function editStudent(id){showStudentForm(db.students.find(s=>s.id==id))}
+function deleteStudent(id){if(!confirm("حذف الطالب؟"))return;db.students=db.students.filter(s=>s.id!=id);save();renderStudents()}
+
+function prepareResults(){
+ document.getElementById("resultClass").innerHTML=classOptions();
+ syncResultSubjects();document.getElementById("scoreArea").innerHTML=""
+}
+function syncResultSubjects(){
+ const id=+document.getElementById("resultClass").value,c=db.classes.find(x=>x.id==id);
+ document.getElementById("resultSubject").innerHTML=(c?.subjects||[]).map(s=>`<option>${s}</option>`).join("")
+}
+function openScores(){
+ const classId=+document.getElementById("resultClass").value,subject=document.getElementById("resultSubject").value,max=+document.getElementById("maxScore").value||20;
+ const studs=db.students.filter(s=>s.classId==classId),key=classId+"|"+subject;
+ const vals=db.scores[key]||{};
+ let h=`<div style="margin-bottom:10px"><b>${clsName(classId)} — ${subject}</b><small style="display:block;color:#7d8797;margin-top:4px">الدرجة من ${max}</small></div><div class="scoretable">`;
+ studs.forEach((s,i)=>h+=`<div class="srow"><div><b>${i+1}. ${s.name}</b></div><input id="sc_${s.id}" type="number" min="0" max="${max}" value="${vals[s.id]??""}" placeholder="0-${max}"></div>`);
+ h+=`</div><button class="primary" style="margin-top:12px" onclick="saveScores('${key}',${classId},'${subject.replace(/'/g,"\\'")}',${max})">حفظ النتائج</button>`;
+ document.getElementById("scoreArea").innerHTML=studs.length?h:"<div class='empty'>لا يوجد طلاب في هذا الفصل.</div>"
+}
+function saveScores(key,classId,subject,max){
+ const vals={};db.students.filter(s=>s.classId==classId).forEach(s=>{let v=document.getElementById("sc_"+s.id)?.value;if(v!==""&&v!=null)vals[s.id]=Math.max(0,Math.min(max,+v))});
+ db.scores[key]=vals;save();toast("تم حفظ النتائج")
+}
+
+function renderNotices(){
+ const box=document.getElementById("noticeList"),arr=[...db.notices].sort((a,b)=>b.id-a.id);box.innerHTML=arr.length?"":"<div class='empty'>لا توجد إشعارات رسمية.</div>";
+ arr.forEach(n=>{const d=document.createElement("div");d.className="row";d.innerHTML=`<div class="emoji">📢</div><div class="grow"><b>${n.title}</b><small>${n.body}</small><div style="margin-top:7px"><span class="tag official">رسمي</span> ${n.urgent?'<span class="tag urgent">عاجل</span>':""} ${n.pinned?'<span class="tag official">مثبت</span>':""}</div></div>
+ <div class="actions"><button class="mini" onclick="editNotice(${n.id})">✏️</button><button class="mini danger" onclick="deleteNotice(${n.id})">🗑️</button></div>`;box.appendChild(d)})
+}
+function showNoticeForm(n=null){
+ document.getElementById("noticeFormWrap").innerHTML=`<div class="form" style="margin-bottom:12px"><div class="field"><label>عنوان الإشعار</label><input id="nfTitle" value="${n?n.title:""}"></div>
+ <div class="field"><label>النص</label><input id="nfBody" value="${n?n.body:""}"></div>
+ <div class="field"><label><input id="nfUrgent" type="checkbox" ${n?.urgent?"checked":""}> إشعار عاجل</label></div>
+ <div class="field"><label><input id="nfPinned" type="checkbox" ${n?.pinned?"checked":""}> تثبيت في الصفحة الرئيسية</label></div>
+ <button class="primary" onclick="saveNotice(${n?n.id:"null"})">نشر الإشعار</button><button class="secondary" onclick="document.getElementById('noticeFormWrap').innerHTML=''">إلغاء</button></div>`
+}
+function saveNotice(id){const title=document.getElementById("nfTitle").value.trim(),body=document.getElementById("nfBody").value.trim();if(!title)return toast("اكتب عنوان الإشعار");
+ const obj={id:id||uid(),title,body,urgent:document.getElementById("nfUrgent").checked,pinned:document.getElementById("nfPinned").checked};
+ if(id)db.notices=db.notices.map(n=>n.id==id?obj:n);else db.notices.push(obj);save();document.getElementById("noticeFormWrap").innerHTML="";renderNotices();toast("تم نشر الإشعار")}
+function editNotice(id){showNoticeForm(db.notices.find(n=>n.id==id))}
+function deleteNotice(id){if(!confirm("حذف الإشعار؟"))return;db.notices=db.notices.filter(n=>n.id!=id);save();renderNotices()}
+
+function renderExams(){
+ const box=document.getElementById("examList"),arr=[...db.exams].sort((a,b)=>b.id-a.id);box.innerHTML=arr.length?"":"<div class='empty'>لا توجد اختبارات بعد.</div>";
+ arr.forEach(e=>{const d=document.createElement("div");d.className="row";d.innerHTML=`<div class="emoji">📝</div><div class="grow"><b>${e.title}</b><small>${clsName(e.classId)} • ${e.subject} • ${e.date||""}</small></div><button class="mini danger" onclick="deleteExam(${e.id})">🗑️</button>`;box.appendChild(d)})
+}
+function showExamForm(){
+ document.getElementById("examFormWrap").innerHTML=`<div class="form" style="margin-bottom:12px"><div class="field"><label>اسم الاختبار</label><input id="efTitle" placeholder="اختبار الفصل الأول"></div>
+ <div class="field"><label>الفصل</label><select id="efClass" onchange="syncExamSubjects()">${classOptions()}</select></div><div class="field"><label>المادة</label><select id="efSubject"></select></div>
+ <div class="field"><label>التاريخ</label><input id="efDate" type="date"></div><button class="primary" onclick="saveExam()">حفظ الاختبار</button></div>`;syncExamSubjects()
+}
+function syncExamSubjects(){const c=db.classes.find(x=>x.id==+document.getElementById("efClass").value);document.getElementById("efSubject").innerHTML=(c?.subjects||[]).map(s=>`<option>${s}</option>`).join("")}
+function saveExam(){const title=document.getElementById("efTitle").value.trim();if(!title)return toast("اكتب اسم الاختبار");db.exams.push({id:uid(),title,classId:+document.getElementById("efClass").value,subject:document.getElementById("efSubject").value,date:document.getElementById("efDate").value});save();document.getElementById("examFormWrap").innerHTML="";renderExams();toast("تم حفظ الاختبار")}
+function deleteExam(id){db.exams=db.exams.filter(e=>e.id!=id);save();renderExams()}
+
+function loadSettings(){
+ document.getElementById("schoolName").value=db.settings.school||"";document.getElementById("schoolYear").value=db.settings.year||"";document.getElementById("directorName").value=db.settings.director||"";document.getElementById("regionName").value=db.settings.region||"";
+ const p=document.getElementById("logoPreview");p.innerHTML=db.settings.logo?`<img src="${db.settings.logo}">`:"🏫"
+}
+function handleLogo(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{db.settings.logo=r.result;document.getElementById("logoPreview").innerHTML=`<img src="${r.result}">`;save()};r.readAsDataURL(f)}
+function saveSettings(){db.settings.school=document.getElementById("schoolName").value.trim()||"مدرستي";db.settings.year=document.getElementById("schoolYear").value.trim();db.settings.director=document.getElementById("directorName").value.trim();db.settings.region=document.getElementById("regionName").value.trim();save();toast("تم حفظ الإعدادات");openSection("home")}
+function resetAll(){if(!confirm("سيتم حذف كل بيانات التطبيق من هذا الهاتف. هل أنت متأكد؟"))return;localStorage.removeItem(K);location.reload()}
+
+refreshStats();
+</script>
+</body>
+</html>
